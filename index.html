@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moh. Raffi Alfatih — Frontend Web Developer</title>
+<meta name="description" content="Portfolio of Moh. Raffi Alfatih — frontend web developer focused on JavaScript, shipping real apps with real users. Open for a 5–10 month full-time internship.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F172A'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='26' font-weight='800' fill='white' text-anchor='middle'%3ERA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F172A;
+    --body: #334155;
+    --muted: #64748B;
+    --faint: #94A3B8;
+    --blue: #2563EB;
+    --blue-soft: #EFF6FF;
+    --bg-soft: #F8FAFC;
+    --line: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", "Liberation Sans", Arial, sans-serif;
+    color: var(--body);
+    background: #ffffff;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #BFDBFE; }
+  a { color: var(--blue); }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  section[id] { scroll-margin-top: 84px; }
+
+  /* ── Navbar ── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 800; font-size: 15px; }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 9px; background: var(--navy); color: #fff;
+    display: grid; place-items: center; font-size: 12.5px; font-weight: 800; letter-spacing: .02em;
+  }
+  .nav-links { display: flex; gap: 24px; margin-left: auto; }
+  .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; transition: color .15s; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    margin-left: 26px; background: var(--navy); color: #fff; text-decoration: none;
+    padding: 8px 15px; border-radius: 10px; font-size: 13.5px; font-weight: 600; transition: background .15s;
+  }
+  .nav-cta:hover { background: #1E293B; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 15px;
+    text-decoration: none; transition: transform .18s, box-shadow .18s, border-color .18s, background .18s;
+  }
+  .btn-primary { background: var(--navy); color: #fff; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(15,23,42,.18); }
+  .btn-ghost { border: 1.5px solid var(--line); color: var(--navy); background: #fff; }
+  .btn-ghost:hover { border-color: var(--faint); }
+  .btn-light { background: #fff; color: var(--navy); }
+  .btn-light:hover { transform: translateY(-1px); }
+  .btn-outline { border: 1.5px solid #475569; color: #E2E8F0; }
+  .btn-outline:hover { border-color: var(--faint); }
+
+  /* ── Hero ── */
+  .hero { padding: 84px 0 64px; }
+  .avail {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0;
+    padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+  }
+  .avail .dot { width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .hero h1 {
+    margin: 20px 0 8px; color: var(--navy); font-weight: 800;
+    font-size: clamp(42px, 7vw, 62px); line-height: 1.05; letter-spacing: -.02em;
+  }
+  .hero .role { font-size: clamp(17px, 2.4vw, 21px); color: var(--blue); font-weight: 600; }
+  .hero .pitch { margin: 18px 0 0; max-width: 660px; font-size: 16.5px; line-height: 1.65; }
+  .cta-row { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+  .stats { display: flex; gap: 40px; margin-top: 48px; flex-wrap: wrap; }
+  .stat { padding-left: 16px; border-left: 3px solid var(--line); }
+  .stat b { display: block; font-size: 30px; font-weight: 800; color: var(--navy); line-height: 1.15; }
+  .stat span { font-size: 13px; color: var(--muted); }
+
+  /* ── Section headers ── */
+  section { padding: 72px 0; }
+  .kicker { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+  h2 { font-size: clamp(26px, 3.4vw, 32px); font-weight: 800; color: var(--navy); margin: 8px 0 0; letter-spacing: -.01em; }
+  .sec-sub { margin: 10px 0 0; color: var(--muted); font-size: 15.5px; max-width: 640px; }
+
+  /* ── Projects ── */
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(15,23,42,.09); border-color: #CBD5E1; }
+  .card.featured {
+    grid-column: 1 / -1; flex-direction: row; gap: 24px; align-items: flex-start;
+    background: linear-gradient(180deg, #FFFFFF, var(--bg-soft));
+  }
+  .card-main { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .card-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .mono {
+    width: 56px; height: 56px; border-radius: 14px; color: #fff; flex-shrink: 0;
+    font-weight: 800; font-size: 20px; display: grid; place-items: center;
+  }
+  .featured .mono { width: 84px; height: 84px; border-radius: 18px; font-size: 28px; }
+  .mono-nb { background: linear-gradient(135deg, #0F172A, #2563EB); }
+  .mono-ks { background: linear-gradient(135deg, #1D4ED8, #60A5FA); }
+  .mono-am { background: linear-gradient(135deg, #334155, #94A3B8); }
+  .mono-wa { background: linear-gradient(135deg, #312E81, #818CF8); }
+  .flag {
+    font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--blue); background: var(--blue-soft); padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .card h3 { margin: 0; font-size: 18.5px; font-weight: 700; color: var(--navy); line-height: 1.35; }
+  .featured h3 { font-size: 22px; }
+  .card h3 span { color: var(--muted); font-weight: 600; }
+  .desc { margin: 0; font-size: 14.5px; line-height: 1.6; }
+  .impact { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .impact li { position: relative; padding-left: 18px; font-size: 14px; line-height: 1.55; }
+  .impact li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 7px; height: 7px; border-radius: 2px; background: var(--blue); }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    font-size: 12px; font-weight: 600; color: #475569;
+    background: #F1F5F9; border: 1px solid var(--line); padding: 4px 11px; border-radius: 999px;
+  }
+  .chip.learn { border-style: dashed; color: var(--muted); background: #fff; }
+  .card-links { margin-top: auto; display: flex; gap: 16px; align-items: center; padding-top: 4px; }
+  .plink { color: var(--blue); font-weight: 600; font-size: 14px; text-decoration: none; }
+  .plink:hover { text-decoration: underline; }
+  .pnote { color: var(--faint); font-size: 13px; }
+
+  /* ── Skills ── */
+  .skill-row {
+    display: grid; grid-template-columns: 230px 1fr; gap: 18px;
+    padding: 20px 0; border-top: 1px solid var(--line);
+  }
+  .skill-row:first-of-type { border-top: none; padding-top: 4px; }
+  .skill-label b { color: var(--navy); font-size: 15px; font-weight: 700; }
+  .skill-label small { display: block; color: var(--faint); font-size: 12.5px; margin-top: 3px; line-height: 1.45; }
+  .skill-value { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
+
+  /* ── About ── */
+  .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .about-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .about-card h3 { margin: 0 0 14px; font-size: 16.5px; color: var(--navy); font-weight: 700; }
+  .item { margin-bottom: 11px; }
+  .item b { display: block; color: var(--navy); font-size: 14.5px; font-weight: 700; }
+  .item .sub { color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+  .item .role-blue { color: var(--blue); font-weight: 600; font-size: 13.5px; }
+  .gpa {
+    display: inline-block; background: var(--blue-soft); color: var(--blue);
+    font-weight: 700; font-size: 12.5px; border-radius: 999px; padding: 3px 11px; margin-top: 2px;
+  }
+  .langs { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #CBD5E1; font-size: 13.5px; color: var(--muted); }
+
+  /* ── Contact ── */
+  .contact-card {
+    position: relative; overflow: hidden;
+    background: var(--navy); border-radius: 22px; padding: 52px 46px; color: #fff;
+  }
+  .contact-card::before {
+    content: ""; position: absolute; right: -90px; top: -90px; width: 300px; height: 300px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(37,99,235,.45), transparent 70%);
+  }
+  .contact-card .kicker { color: #93C5FD; }
+  .contact-card h2 { color: #fff; }
+  .contact-card p { color: #CBD5E1; max-width: 580px; font-size: 15.5px; line-height: 1.65; }
+  .contact-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .small-print { margin-top: 18px; font-size: 13px; color: var(--faint); }
+
+  /* ── Footer ── */
+  footer { padding: 28px 0 44px; }
+  .foot { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; color: var(--faint); font-size: 13px; }
+
+  /* ── Animasi reveal saat scroll ── */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .avail .dot { animation: none; }
+  }
+
+  /* ── Responsif ── */
+  @media (max-width: 860px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .card.featured { flex-direction: column; }
+    .skill-row { grid-template-columns: 1fr; gap: 10px; padding: 16px 0; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-card { padding: 36px 26px; }
+    section { padding: 56px 0; }
+    .hero { padding: 60px 0 48px; }
+  }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav-cta { margin-left: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">
+      <span class="logo-mark">RA</span> Raffi Alfatih
+    </a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="https://github.com/raffiAl" target="_blank" rel="noopener">GitHub &nearr;</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="avail"><span class="dot"></span> Open for a 5&ndash;10 month full-time internship &mdash; available after UAS (early 2027)</span>
+      <h1>Moh. Raffi Alfatih</h1>
+      <div class="role">Frontend Web Developer</div>
+      <p class="pitch">5th-semester Informatics student at Nusa Putra University, building a JavaScript-first frontend &mdash; DOM manipulation, async JS, and open REST APIs. I ship real apps with real users through an AI-assisted workflow, and I strengthen the fundamentals with every project.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn btn-ghost" href="https://github.com/raffiAl" target="_blank" rel="noopener">GitHub &nearr;</a>
+        <a class="btn btn-ghost" href="mailto:muhammadraffialfatih46@gmail.com">Email me</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>4</b><span>apps shipped &mdash; 3 with real users</span></div>
+        <div class="stat"><b>3</b><span>Dicoding certifications (2024)</span></div>
+        <div class="stat"><b>3.24</b><span>GPA &mdash; 5th semester, Informatics</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">01 &middot; Projects</div>
+        <h2>Featured Projects</h2>
+        <p class="sec-sub">Real applications with real users &mdash; built with an AI-assisted workflow where I own the IDE, the architecture decisions, and the testing.</p>
+      </div>
+      <div class="projects-grid">
+
+        <article class="card featured reveal">
+          <div class="mono mono-nb">NB</div>
+          <div class="card-main">
+            <div class="card-top">
+              <span class="flag">Flagship &middot; real users</span>
+            </div>
+            <h3>Nangerang Benderang <span>&mdash; Village Rice-Fund App</span></h3>
+            <p class="desc">Digitalized a village's rice-fund bookkeeping &mdash; replacing the treasurer's paper ledger with a mobile web app.</p>
+            <ul class="impact">
+              <li>Input time down to ~30 seconds per record for the treasurer</li>
+              <li>Single-source-of-truth balance logic + server-side validation blocking over-stock sales</li>
+              <li>Public no-login dashboard for stock &amp; night-watch schedules, plus handover guides for non-technical caretakers</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Next.js 16</span><span class="chip">React 19</span><span class="chip">Prisma</span><span class="chip">SQLite</span><span class="chip">Tailwind CSS</span>
+            </div>
+            <div class="card-links">
+              <a class="plink" href="https://github.com/raffiAl/nangerang-benderang-v2" target="_blank" rel="noopener">GitHub &nearr;</a>
+              <!-- Kalau proyek ini sudah di-deploy, tambahkan link demo di sini:
+                   <a class="plink" href="URL_DEMO" target="_blank" rel="noopener">Live demo &nearr;</a> -->
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-top">
+            <div class="mono mono-ks">KS</div>
+            <span class="flag">Realtime</span>
+          </div>
+          <h3>KKN Sinergi-Workspace</h3>
+          <p class="desc">Workspace platform for our KKN team activities &mdash; tasks, notes, and schedules synced live across every member's device.</p>
+          <div class="chips">
+            <span class="chip">Next.js</span><span class="chip">Supabase Realtime</span>
+          </div>
+          <div class="card-links">
+            <a class="plink" href="https://github.com/raffiAl/kkn-supabase-realtime" target="_blank" rel="noopener">GitHub &nearr;</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-top">
+            <div class="mono mono-am">AM</div>
+            <span class="flag">Web app</span>
+          </div>
+          <h3>Online Attendance System <span>&mdash; Ponpes Maslakunnidzom</span></h3>
+          <p class="desc">Web-based attendance record-keeping that streamlines daily tracking for boarding-school administrators.</p>
+          <div class="card-links">
+            <a class="plink" href="https://github.com/raffiAl/onlineabsensi-maslakunnidzom" target="_blank" rel="noopener">GitHub &nearr;</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-top">
+            <div class="mono mono-wa">WA</div>
+            <span class="flag">Hands-on practice</span>
+          </div>
+          <h3>Weather App <span>&mdash; Personal Practice</span></h3>
+          <p class="desc">Fetches and renders live weather data from a public open API &mdash; deliberate practice for fetch, async handling, and DOM rendering, fully hand-coded.</p>
+          <div class="chips">
+            <span class="chip">JavaScript</span><span class="chip">Fetch API</span><span class="chip">DOM</span>
+          </div>
+          <div class="card-links">
+            <span class="pnote">local project &mdash; repo on request</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills" style="background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">02 &middot; Skills</div>
+        <h2>Technical Skills</h2>
+        <p class="sec-sub">Presented as honestly as I can &mdash; what I can do solo, what I use in AI-assisted builds, and what I'm learning next.</p>
+      </div>
+      <div style="margin-top: 26px;">
+
+        <div class="skill-row reveal">
+          <div class="skill-label"><b>Core foundation</b><small>What I use day-to-day without help</small></div>
+          <div class="skill-value">
+            <span class="chip">HTML5</span><span class="chip">CSS3 (responsive)</span><span class="chip">JavaScript &mdash; fundamental (ES6)</span><span class="chip">DOM manipulation</span><span class="chip">Async &amp; fetch</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="skill-label"><b>APIs &amp; data</b><small>Consuming open data sources</small></div>
+          <div class="skill-value">
+            <span class="chip">REST APIs (GET, JSON)</span>
+            <span class="chip learn">Request params &mdash; learning next</span>
+            <span class="chip learn">Backend&ndash;database integration &mdash; learning next</span>
+            <span class="chip learn">Server workflow &mdash; learning next</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="skill-label"><b>Project stack</b><small>Used across my shipped apps (AI-assisted)</small></div>
+          <div class="skill-value">
+            <span class="chip">React 19</span><span class="chip">Next.js 16</span><span class="chip">Tailwind CSS</span><span class="chip">Prisma</span><span class="chip">SQLite</span><span class="chip">Supabase (Realtime)</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="skill-label"><b>Tools &amp; workflow</b><small>My daily setup</small></div>
+          <div class="skill-value">
+            <span class="chip">Git &amp; GitHub</span><span class="chip">VS Code</span><span class="chip">npm</span><span class="chip">Chrome DevTools</span><span class="chip">Figma (replicating designs)</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">03 &middot; About</div>
+        <h2>Education, Certificates &amp; Activities</h2>
+      </div>
+      <div class="about-grid" style="margin-top: 30px;">
+
+        <div class="about-card reveal">
+          <h3>Education</h3>
+          <div class="item">
+            <b>Nusa Putra University &mdash; Sukabumi, Indonesia</b>
+            <div class="sub">Bachelor of Science in Informatics &middot; 2024 &ndash; present (5th semester)</div>
+          </div>
+          <span class="gpa">GPA 3.24 / 4.00</span>
+          <div class="sub" style="margin-top: 12px; font-size: 13.5px; color: var(--muted); line-height: 1.55;">
+            Coursework: Web Programming, Data Structures &amp; Algorithms, Database Systems, HCI.
+          </div>
+        </div>
+
+        <div class="about-card reveal">
+          <h3>Certifications</h3>
+          <div class="item"><b>Pemrograman Dasar</b><div class="sub">Dicoding &middot; 2024</div></div>
+          <div class="item"><b>JavaScript Fundamental</b><div class="sub">Dicoding &middot; 2024</div></div>
+          <div class="item"><b>Front-End Web Basic</b><div class="sub">Dicoding &middot; 2024</div></div>
+          <div class="langs"><b style="color: var(--navy);">Languages:</b> Indonesian (native) &middot; English (basic &mdash; speaking in progress)</div>
+        </div>
+
+        <div class="about-card reveal">
+          <h3>Organizational Experience</h3>
+          <div class="item">
+            <b>Informatics Student Association (HMTI)</b>
+            <div class="role-blue">Active Member &mdash; Ketua Pelaksana (Event Chair)</div>
+            <div class="sub">Chaired association programs from MABIM (freshman orientation) through the KKN community-service period.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <div class="kicker">04 &middot; Contact</div>
+        <h2>Let's build something</h2>
+        <p>I'm looking for a 5&ndash;10 month full-time frontend internship &mdash; remote or on-site, open to relocation. Classes end at this semester's UAS, so I'm fully available afterwards. If your team needs someone who learns fast and ships, let's talk.</p>
+        <div class="contact-actions">
+          <a class="btn btn-light" href="mailto:muhammadraffialfatih46@gmail.com">Email me</a>
+          <a class="btn btn-outline" href="https://wa.me/62895335210378" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-outline" href="https://linkedin.com/in/moh-raffi-alfatih-4b8895301" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-outline" href="https://github.com/raffiAl" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="small-print">Usually replies within a day &middot; Sukabumi, West Java, Indonesia</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span id="year">2026</span> Moh. Raffi Alfatih</span>
+    <span>Hand-coded with vanilla HTML, CSS &amp; JavaScript &mdash; no framework, no template.</span>
+  </div>
+</footer>
+
+<script>
+  // Animasi muncul saat elemen masuk viewport (biar ada kesan hidup, tapi ringan)
+  const items = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target); // cukup sekali animasi
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach((el) => io.observe(el));
+  } else {
+    items.forEach((el) => el.classList.add("in"));
+  }
+
+  // Tahun di footer otomatis ke-update
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
